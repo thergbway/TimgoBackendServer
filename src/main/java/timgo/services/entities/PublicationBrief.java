@@ -1,8 +1,8 @@
-package timgo.model.entities;
+package timgo.services.entities;
 
 import java.sql.Timestamp;
 
-public class Publication {
+public class PublicationBrief {
     private Integer id;
     private String title;
     private String role;
@@ -10,7 +10,7 @@ public class Publication {
     private Boolean is_team;
     private Timestamp posted_timestamp;
 
-    public Publication(Integer id, String title, String role, String photo_100_url, Boolean is_team, Timestamp posted_timestamp) {
+    public PublicationBrief(Integer id, String title, String role, String photo_100_url, Boolean is_team, Timestamp posted_timestamp) {
         this.id = id;
         this.title = title;
         this.role = role;
@@ -19,7 +19,7 @@ public class Publication {
         this.posted_timestamp = posted_timestamp;
     }
 
-    public Publication() {
+    public PublicationBrief() {
 
     }
 

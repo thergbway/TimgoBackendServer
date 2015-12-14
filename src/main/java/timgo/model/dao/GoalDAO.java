@@ -12,6 +12,7 @@ public class GoalDAO {
 
         try(Connection con = Sql2oHolder.SQL_2_O.open()) {
             return con.createQuery(sql)
+                .addParameter("id", id)
                 .executeAndFetchFirst(GoalDTO.class);
         }
     }

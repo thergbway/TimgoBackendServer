@@ -1529,7 +1529,7 @@ public class RestAPITest {
     @Test
     public void canGetPublications() {
         when()
-            .get(Paths.GET_PUBLICATIONS_METHOD)
+            .get(Paths.GET_PUBLICATIONS_BRIEF_METHOD)
             .then()
             .statusCode(200)
             .body("id", Matchers.hasItems(1, 2, 3, 4, 5));
@@ -1542,5 +1542,15 @@ public class RestAPITest {
             .then()
             .statusCode(200)
             .header("Content-Type", Matchers.is("image/jpg;charset=UTF-8"));
+    }
+
+    @Test
+    public void canGetPublicationDescription() {
+        when()
+            .get(Paths.GET_PUBLICATION_DETAILS_METHOD + "?id=1")
+            .then()
+            .statusCode(200)
+            .body("id", Matchers.is(1))
+            .body("is_active", Matchers.is(true));
     }
 }

@@ -17,4 +17,15 @@ public class PublicationDAO {
                 .executeAndFetch(PublicationDTO.class);
         }
     }
+
+    public PublicationDTO read(Integer id) {
+        String sql =
+            "select * from publications where id = :id";
+
+        try(Connection con = Sql2oHolder.SQL_2_O.open()) {
+            return con.createQuery(sql)
+                .addParameter("id", id)
+                .executeAndFetchFirst(PublicationDTO.class);
+        }
+    }
 }

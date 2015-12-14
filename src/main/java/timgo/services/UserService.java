@@ -2,7 +2,7 @@ package timgo.services;
 
 import timgo.model.dao.UserDAO;
 import timgo.model.dao.dto.UserDTO;
-import timgo.model.entities.User;
+import timgo.services.entities.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ public class UserService {
         return userDAO.read(id).getPhoto_100();
     }
 
-    public User getUser(Integer id) {
+    public UserDetails getUser(Integer id) {
         UserDTO dto = userDAO.read(id);
-        return new User(
+        return new UserDetails(
             dto.getId(),
             dto.getFirst_name(),
             dto.getLast_name(),

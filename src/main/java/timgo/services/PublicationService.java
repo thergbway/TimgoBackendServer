@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 import timgo.model.dao.GoalDAO;
 import timgo.model.dao.PublicationDAO;
 import timgo.model.dao.dto.PublicationDTO;
-import timgo.model.entities.Publication;
-import timgo.model.entities.User;
+import timgo.services.entities.PublicationBrief;
+import timgo.services.entities.PublicationDetails;
+import timgo.services.entities.UserDetails;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,18 +17,18 @@ public class PublicationService {
     @Autowired
     private PublicationDAO publicationDAO;
     @Autowired
-    private GoalDAO goalDAO;
+    private GoalService goalService;
     @Autowired
     private UserService userService;
 
-    public List<Publication> getPublications() {
+    public List<PublicationBrief> getPublications() {
         List<PublicationDTO> publicationDTOs = publicationDAO.readAll();
 
-        LinkedList<Publication> publications = new LinkedList<>();
+        LinkedList<PublicationBrief> publicationBriefs = new LinkedList<>();
         for (PublicationDTO publicationDTO : publicationDTOs) {
-            User creator = userService.getUser(publicationDTO.getCreator());
+            UserDetails creator = userService.getUser(publicationDTO.getCreator());
 
-            Publication publication = new Publication(
+            PublicationBrief publicationBrief = new PublicationBrief(
                 publicationDTO.getId(),
                 creator.getFirst_name() + " " + creator.getLast_name(),
                 publicationDTO.getRole(),
@@ -36,9 +37,28 @@ public class PublicationService {
                 publicationDTO.getPosted_timestamp()
             );
 
-            publications.add(publication);
+            publicationBriefs.add(publicationBrief);
         }
 
-        return publications;
+        return publicationBriefs;
+    }
+
+    public PublicationDetails getPublicationDetails(Integer id) {
+        PublicationDTO publicationDTO = publicationDAO.read(id);
+        UserDetails creator = userService.getUser(publicationDTO.getCreator());
+        String goalName = goalService.getGoalName(publicationDTO.getGoal());
+
+        return new PublicationDetails(
+            publicationDTO.getId(),
+            creator.getFirst_name() + " " + creator.getLast_name(),
+            publicationDTO.getRole(),
+            creator.getPhoto_100_url(),
+            publicationDTO.getTeam() != null,
+            publicationDTO.getPosted_timestamp(),
+            publicationDTO.getSkill(),
+            goalName,
+            publicationDTO.getDescription(),
+            publicationDTO.getIs_active()
+        );
     }
 }

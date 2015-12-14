@@ -1,6 +1,6 @@
-package timgo.model.entities;
+package timgo.services.entities;
 
-public class User {
+public class UserDetails {
     private Integer id;
     private String first_name;
     private String last_name;
@@ -8,10 +8,10 @@ public class User {
     private String vk_url;
     private String about;
 
-    public User() {
+    public UserDetails() {
     }
 
-    public User(Integer id, String first_name, String last_name, String photo_100_url, String vk_url, String about) {
+    public UserDetails(Integer id, String first_name, String last_name, String photo_100_url, String vk_url, String about) {
 
         this.id = id;
         this.first_name = first_name;
