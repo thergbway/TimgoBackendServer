@@ -1,12 +1,12 @@
 package timgo.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import timgo.model.dao.GoalDAO;
 import timgo.model.dao.PublicationDAO;
 import timgo.model.dao.dto.PublicationDTO;
 import timgo.model.entities.Publication;
 import timgo.model.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +33,6 @@ public class PublicationService {
                 publicationDTO.getRole(),
                 creator.getPhoto_100_url(),
                 publicationDTO.getTeam() != null,
-                "http://NO_THIS_URL_YET",
                 publicationDTO.getPosted_timestamp()
             );
 

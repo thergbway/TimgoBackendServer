@@ -8,10 +8,23 @@ public class Publication {
     private String role;
     private String photo_100_url;
     private Boolean is_team;
-    private String details_url;
     private Timestamp posted_timestamp;
 
+    public Publication(Integer id, String title, String role, String photo_100_url, Boolean is_team, Timestamp posted_timestamp) {
+        this.id = id;
+        this.title = title;
+        this.role = role;
+        this.photo_100_url = photo_100_url;
+        this.is_team = is_team;
+        this.posted_timestamp = posted_timestamp;
+    }
+
+    public Publication() {
+
+    }
+
     public Integer getId() {
+
         return id;
     }
 
@@ -51,34 +64,11 @@ public class Publication {
         this.is_team = is_team;
     }
 
-    public String getDetails_url() {
-        return details_url;
-    }
-
-    public void setDetails_url(String details_url) {
-        this.details_url = details_url;
-    }
-
     public Timestamp getPosted_timestamp() {
         return posted_timestamp;
     }
 
     public void setPosted_timestamp(Timestamp posted_timestamp) {
-        this.posted_timestamp = posted_timestamp;
-    }
-
-    public Publication() {
-
-    }
-
-    public Publication(Integer id, String title, String role, String photo_100_url, Boolean is_team, String details_url, Timestamp posted_timestamp) {
-
-        this.id = id;
-        this.title = title;
-        this.role = role;
-        this.photo_100_url = photo_100_url;
-        this.is_team = is_team;
-        this.details_url = details_url;
         this.posted_timestamp = posted_timestamp;
     }
 }
