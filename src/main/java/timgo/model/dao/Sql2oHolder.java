@@ -4,6 +4,7 @@ import org.postgresql.Driver;
 import org.sql2o.Sql2o;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.DriverManager;
 import java.util.Properties;
 
@@ -15,14 +16,10 @@ public class Sql2oHolder {
         try {
             DriverManager.registerDriver(new Driver());
 
-            InputStream is = ClassLoader.getSystemResourceAsStream("cfg/config.properties");
-            Properties props = new Properties();
-            props.load(is);
-
             SQL_2_O = new Sql2o(
-                props.getProperty("db_connection_url"),
-                props.getProperty("db_username"),
-                props.getProperty("db_password")
+                "jdbc:postgresql://localhost:5432/timgo",
+                "postgres",
+                "default"
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
